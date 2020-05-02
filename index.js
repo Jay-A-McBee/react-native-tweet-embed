@@ -1,5 +1,2 @@
-import { NativeModules } from 'react-native';
-
-const { TweetEmbed } = NativeModules;
-
+import TweetEmbed from './src/tweet-embed';
 export default TweetEmbed;
