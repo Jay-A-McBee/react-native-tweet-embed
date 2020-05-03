@@ -1,5 +1,5 @@
-import React, { MutableRefObject } from 'react';
-import { Linking, Animated, NativeModules } from 'react-native';
+import React from 'react';
+import { Linking, Animated } from 'react-native';
 import WebView, {
   WebViewNavigation,
   WebViewMessageEvent,
@@ -8,7 +8,7 @@ import WebView, {
 import { useTwitterWidgetJS } from './useTwitterWidgetJS';
 import { LoadingIndicator } from './loading-indicator';
 
-const ABOUT_BLANK_PATTERN = /about\:blank/;
+const ABOUT_BLANK_PATTERN = /about:blank/;
 
 const htmlTemplate = `
   <html>
@@ -34,23 +34,26 @@ const TweetEmbed: React.FC<{
   // access to stopLoading method
   const webViewHandle = React.useRef<WebView>(null);
 
-  const handleMessage = React.useCallback((event: WebViewMessageEvent) => {
-    if (onMessage) {
-      onMessage(event);
-    } else {
-      Animated.parallel([
-        Animated.timing(height.current, {
-          toValue: parseInt(event.nativeEvent.data, 10) + 20,
-          useNativeDriver: false,
-        }),
-        Animated.timing(opacity.current, {
-          toValue: 1,
-          useNativeDriver: false,
-        }),
-      ]).start();
-      setIsLoading(false);
-    }
-  }, []);
+  const handleMessage = React.useCallback(
+    (event: WebViewMessageEvent) => {
+      if (onMessage) {
+        onMessage(event);
+      } else {
+        Animated.parallel([
+          Animated.timing(height.current, {
+            toValue: parseInt(event.nativeEvent.data, 10) + 20,
+            useNativeDriver: false,
+          }),
+          Animated.timing(opacity.current, {
+            toValue: 1,
+            useNativeDriver: false,
+          }),
+        ]).start();
+        setIsLoading(false);
+      }
+    },
+    [onMessage],
+  );
 
   const onNavigationStateChange = React.useCallback(
     async (event: WebViewNavigation) => {
@@ -68,10 +71,10 @@ const TweetEmbed: React.FC<{
         console.log(e);
       }
     },
-    [],
+    [onNavigationChange],
   );
 
-  const { widgetJS, error } = useTwitterWidgetJS();
+  const { widgetJS } = useTwitterWidgetJS();
 
   const createTweet = React.useMemo(() => {
     return `
