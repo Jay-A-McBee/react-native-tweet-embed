@@ -2,8 +2,6 @@
 
 Embed a specific tweet in a React Native view
 
-![](assets/tweet_embed.gif)
-
 ## Installation
 
 ```sh
@@ -42,6 +40,9 @@ import { TweetEmbed } from 'react-native-tweet-embed';
 
 <TweetEmbed tweetId={'1236076554909872128'} />;
 ```
+
+
+![](assets/tweet_embed.gif=250x500)
 
 ## License
 
