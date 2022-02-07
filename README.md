@@ -1,6 +1,8 @@
 # react-native-tweet-embed
 
 Embed a specific tweet in a React Native view
+-------------------------------------------------------
+[![npm version](https://badge.fury.io/js/react-native-tweet-embed.svg)](https://badge.fury.io/js/react-native-tweet-embed)
 
 ## Installation
 
