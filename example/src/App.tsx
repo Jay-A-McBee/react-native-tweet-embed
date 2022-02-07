@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#364661',
+    backgroundColor: '#364661'
   },
   title: {
     fontSize: 30,
-    color: '#44e394',
-  },
+    color: '#44e394'
+  }
 });

@@ -10,17 +10,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(1,1,1,.5)',
-  },
+    backgroundColor: 'rgba(1,1,1,.5)'
+  }
 });
 
 export const LoadingIndicator: React.FC<{
   isLoading: boolean;
   size?: number | 'small' | 'large';
-}> = ({ isLoading, size = 'large' }) => {
-  return isLoading ? (
+}> = ({ isLoading, size = 'large' }) =>
+  isLoading ? (
     <View style={styles.spinner}>
       <ActivityIndicator size={size} color="#fff" animating />
     </View>
   ) : null;
-};

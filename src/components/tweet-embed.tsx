@@ -1,16 +1,11 @@
 import React from 'react';
-import { Linking, Animated, NativeModules, Platform } from 'react-native';
+import { Linking, Animated, NativeModules } from 'react-native';
 import WebView, {
   WebViewNavigation,
   WebViewMessageEvent
 } from 'react-native-webview';
 import { LoadingIndicator } from './loading-indicator';
-
-const LINKING_ERROR =
-  `The package 'react-native-tweet-embed' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+import { LINKING_ERROR, HTML_TEMPLATE } from 'src/constants';
 
 const WidgetHandle = NativeModules.TweetEmbed
   ? NativeModules.TweetEmbed
@@ -23,18 +18,7 @@ const WidgetHandle = NativeModules.TweetEmbed
       }
     );
 
-const ABOUT_BLANK_PATTERN = /about:blank/;
-
-const htmlTemplate = `
-  <html>
-    <head>
-      <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
-    </head>
-    <body>
-      <div id="wrapper"></div>
-    </body>
-  </html>
-`;
+const ABOUT_BLANK_REGEX = /about:blank/;
 
 const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
   const [state, setState] = React.useState<string | null>(null);
@@ -71,7 +55,7 @@ const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
 
   const onNavigationStateChange = React.useCallback(
     async ({ url }: WebViewNavigation) => {
-      if (!ABOUT_BLANK_PATTERN.test(url) && webViewHandle.current) {
+      if (!ABOUT_BLANK_REGEX.test(url) && webViewHandle.current) {
         try {
           webViewHandle.current.stopLoading();
           await Linking.openURL(url);
@@ -115,7 +99,7 @@ const TweetEmbed: React.FC<{ tweetId: string }> = ({ tweetId }) => {
         <WebView
           ref={webViewHandle}
           originWhitelist={['*']}
-          source={{ html: htmlTemplate }}
+          source={{ html: HTML_TEMPLATE }}
           onMessage={handleMessage}
           onNavigationStateChange={onNavigationStateChange}
           injectedJavaScript={createTweet}
