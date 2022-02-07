@@ -47,7 +47,3 @@ import { TweetEmbed } from 'react-native-tweet-embed';
 ## License
 
 MIT
-
-## License
-
-MIT
