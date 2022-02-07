@@ -42,7 +42,7 @@ import { TweetEmbed } from 'react-native-tweet-embed';
 ```
 
 
-![](assets/tweet_embed.gif=250x500)
+![](assets/tweet_embed.gif|width=250 height=500)
 
 ## License
 
