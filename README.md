@@ -5,7 +5,7 @@ Embed a specific tweet in a React Native view
 ## Installation
 
 ```sh
-yarn react-native-tweet-embed
+yarn add react-native-tweet-embed
 ```
 
 or
