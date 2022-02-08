@@ -5,7 +5,7 @@ import WebView, {
   WebViewMessageEvent
 } from 'react-native-webview';
 import { LoadingIndicator } from './loading-indicator';
-import { LINKING_ERROR, HTML_TEMPLATE } from 'src/constants';
+import { LINKING_ERROR, HTML_TEMPLATE } from '../constants';
 
 const WidgetHandle = NativeModules.TweetEmbed
   ? NativeModules.TweetEmbed
