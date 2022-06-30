@@ -17,20 +17,12 @@ npm install --save react-native-tweet-embed
 
 This component uses a native ios and Android module to optimize fetching the twitter widget js blob.
 
-## react-native version >= v60
+## requires react-native version >= v60
 
 Linking is handled automatically. You must install pods only.
 
 ```sh
 cd ios && pod install
-```
-
-## react-native version < v60
-
-Link the native modules with the following command
-
-```sh
-react-native link react-native-tweet-embed
 ```
 
 ## Usage
